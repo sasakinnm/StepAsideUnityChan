@@ -39,7 +39,6 @@ public class ItemGenerator : MonoBehaviour
         {
             if (unitychan.transform.position.z <= this.startPos && this.startPos <= (unitychan.transform.position.z + 50))
             {
-                int i = this.startPos += 15;
 
                 Debug.Log("生成範囲内");//確認用
 
@@ -53,7 +52,7 @@ public class ItemGenerator : MonoBehaviour
                         Debug.Log("コーン生成");//確認用
 
                         GameObject cone = Instantiate(conePrefab);
-                        cone.transform.position = new Vector3(4 * j, cone.transform.position.y, i);
+                        cone.transform.position = new Vector3(4 * j, cone.transform.position.y, startPos);
                     }
                 }
                 else
@@ -72,16 +71,19 @@ public class ItemGenerator : MonoBehaviour
                         {
                             //コインを生成
                             GameObject coin = Instantiate(coinPrefab);
-                            coin.transform.position = new Vector3(posRange * j, coin.transform.position.y, i + offsetZ);
+                            coin.transform.position = new Vector3(posRange * j, coin.transform.position.y, startPos + offsetZ);
                         }
                         else if (7 <= item && item <= 9)
                         {
                             //車を生成
                             GameObject car = Instantiate(carPrefab);
-                            car.transform.position = new Vector3(posRange * j, car.transform.position.y, i + offsetZ);
+                            car.transform.position = new Vector3(posRange * j, car.transform.position.y, startPos + offsetZ);
                         }
                     }
                 }
+
+                startPos += 15;
+
             }
         }
     }
